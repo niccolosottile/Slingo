@@ -20,7 +20,7 @@ export default function Create() {
     // This function will handle the submission
     async function onSubmit(e) {
         e.preventDefault();
-
+    
         // When a post request is sent to the create url, we'll add a new record to the database
         const newPerson = { ...form };
 
@@ -36,6 +36,9 @@ export default function Create() {
             return;
         });
 
+        console.log("ns1");
+
+        setForm({ name: "", position: "", level: "" });
         navigate("/");
     }
 
