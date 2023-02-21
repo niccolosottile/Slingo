@@ -1,10 +1,6 @@
 # Slingo
 
-#### Web application aiming at dimishing the communication barrier for deaf or hearing impaired people. 
-
-#### Slingo uses deep learning with motion recognition in order analyse and translate sign language from visual user input. 
-
-#### The application provides both a beginner British Sign Language (BSL) course as well as a BSL to text translation service.
+#### Web application aiming at dimishing the communication barrier for deaf or hearing impaired people. Slingo uses deep learning with motion recognition in order analyse and translate sign language from visual user input. The application provides both a beginner British Sign Language (BSL) course as well as a BSL to text translation service.
 
 To run the web application:
 
