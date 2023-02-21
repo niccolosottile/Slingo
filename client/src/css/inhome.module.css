@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:600,700,800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+  background-color: #FFEEE1;
+  height: 100vh;
+}
+
+.intro {
+  margin-left: 80px;
+  margin-top: 80px;
+}
+
+.home {
+  color: #373737;
+  font-size: 56px;
+  font-weight: 800;
+}
+
+.greeting {
+  color: #4E4E4E;
+  font-size: 24px;
+  margin-top: 16px;
+}
+
+.navigation-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-top: 80px;
+}
+
+.navigation-buttons button {
+  flex: 1;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  padding: 120px 0;
+  border-radius: 30px;
+  background-color: #FF6C2D;
+  border: none;
+  transition: 0.3s;
+}
+
+.navigation-buttons button:hover {
+  background-color: #D15621;
+}

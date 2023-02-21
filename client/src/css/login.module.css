@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:600,700,800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+  display: flex;
+  /* Takes up 100% of view height */
+  height: 100vh;
+}
+
+.login-header {
+  /* padding: 10px; */
+  font-size: 48px;
+  font-weight: 600;
+  margin-top: 48px;
+  margin-left: 48px;
+  margin-bottom: 36px;
+}
+
+.container-1 {
+  /* Takes up 60% of the width */
+  width: 60%;
+  background-color: #ff8118;
+  display: flex;
+  flex-direction: column;
+}
+
+.sub-container-1 {
+  /* Takes up 60% of the width */
+  width: 55%;
+  /* background-color: #DDDDDD; */
+  display: flex;
+  flex-direction: row;
+}
+
+.slingo-header {
+  font-size: 48px;
+  font-weight: 600;
+  margin-top: 60px;
+  margin-left: 24px;
+  color: #ffffff;
+}
+
+.slingo-slogan {
+  font-size: 24px;
+  color: #ffffff;
+  margin-left: 64px;
+  margin-top: 200px;
+}
+
+.quote-part-1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.quote-author {
+  font-size: 32px;
+}
+
+.slingo-logo {
+  width: 70px;
+  height: 70px;
+  margin-left: 48px;
+  margin-top: 48px;
+}
+
+.sub-container-2 {
+  width: 45%;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 48px;
+  margin-top: 48px;
+}
+
+.login-form div {
+  display: flex;
+  flex-direction: column;
+  margin-right: 48px;
+}
+
+.login-form label {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  padding: 7px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 3px solid #aaa9a9;
+}
+
+input[type="text"] {
+  margin-bottom: 36px;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  color: #aaa9a9;
+  text-decoration: none;
+  /* Shift to the right side */
+  align-self: flex-end;
+}
+
+.login-button {
+  background-color: #ff6c2d;
+  color: white;
+  padding: 15px 100px;
+  border-radius: 20px;
+  margin-right: 24px;
+  border: none;
+  margin-top: 24px;
+  cursor: pointer;
+  /* Align to center */
+  align-self: center;
+  font-size: 18px;
+}
+
+.login-button:hover, .login-button:hover {
+  background-color: #f85b18;
+}
+
+.link-to-signup {
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 24px;
+  font-size: 12px;
+}
+
+.link-to-signup a {
+  text-decoration: none;
+  color: #ff6c2d;
+  font-weight: 600;
+}
+
+.link-to-signup a:hover {
+  /* Darken the color a bit */
+  color: #f85b18;
+}
+
+.or-separator {
+  align-self: center;
+  transform: scale(0.7);
+  margin-top: 48px;
+  margin-right: 24px;
+}
+
+.continue-with-google-button {
+  align-self: center;
+  /* Decrease size by 50 percent */
+  margin-top: 24px;
+  transform: scale(0.7);
+  margin-right: 24px;
+}
+
+.continue-with-google-button:hover {
+  /* Reduce size a bit */
+  transform: scale(0.72);
+}

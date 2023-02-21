@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+  background-color: #ffeee1;
+  height: 100vh;
+}
+
+.course-details {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-left: 80px;
+}
+
+.course-heading {
+  color: #444444;
+  font-size: 24px;
+  margin-bottom: 6px;
+}
+
+.question-count {
+  color: #6F6F6F;
+  font-size: 16px;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-section {
+  font-size: 24px;
+  color: #7E7E7E;
+}
+
+.button-1 {
+  color: green;
+  text-decoration: white;
+}
+
+.button-2 {
+  color: red;
+  text-decoration: white;
+}
+
+.camera-view {
+  /* Align central */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.webcam {
+  transform: scale(0.9);
+}
+
+.skip-button {
+  position: absolute;
+  right: 5%;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #FF6C2D;
+}
+
+.skip-button:hover {
+  cursor: pointer;
+}
+
+.leave-section {
+  display: flex;
+  justify-content: center;
+}
+
+.leave-button {
+  color: #FF4949;
+  font-size: 18px;
+  background: transparent;
+  border: none;
+}
+
+.leave-button:hover {
+  cursor: pointer;
+}
+
+.results-section {
+  margin-top: 80px;
+}
+
+.score {
+  font-size: 24px;
+  color: #444444;
+  margin-bottom: 36px;
+}

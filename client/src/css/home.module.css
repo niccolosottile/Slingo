@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:600,700,800&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  flex: 1;
+  background: linear-gradient(180deg, #FFAA45 0%, #FF7D1E 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-bottom: 140px;
+}
+
+.navbar {
+  background-color: transparent;
+  border: none;
+  height: 60px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.navbar-right {
+  margin-right: 80px;
+}
+
+.navbar-button-login {
+  height: 51px;
+  width: 140px;
+  text-align: center;
+
+  margin-top: 24px;
+  margin-right: 36px;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.navbar-button-login:hover {
+  background-color: #ffffff;
+  color: #ff6c2d;
+}
+
+.navbar-button-signup {
+  height: 51px;
+  width: 140px;
+  text-align: center;
+
+  margin-left: 36px;
+  margin-top: 24px;
+  background-color: #ff6c2d;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.navbar-button-signup:hover {
+  background-color: #ffffff;
+  color: #ff6c2d;
+  border: 2px solid #ffffff;
+}
+
+.container-1 {
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  width: 100%;
+  align-items: center;
+  color: #ffffff;
+}
+
+.slingo-logo {
+  width: 85px;
+  height: 85px;
+  margin-top: 30px;
+}
+
+.container-1 h1 {
+  font-size: 80px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.container-1 blockquote {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 24px;
+}
+
+.sub-container {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.sub-container-content {
+  text-align: center;
+  background-color: #ffffffcc;
+  color: #464646;
+  padding: 30px;
+  border-radius: 45px;
+  box-shadow: 0 0 10px 0 #00000033;
+}
+
+.sub-container h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.sub-container p {
+  font-size: 16px;
+  color: #6A6A6A;
+  line-height: 1.5;
+  font-weight: 400;
+  margin-top: 24px;
+}
+
+.footer {
+  background-color: #ffab7a;
+  flex: 1;
+}
+
+.footer-content {
+  padding-top: 24px;
+}
+
+.slingo-logo-text {
+  display: flex;
+  flex-direction: row;
+  /* Align text with svg */
+  align-items: center;
+  margin-left: 48px;
+}
+
+.slingo-logo-2 {
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
+}
+
+.slingo-logo-text h2 {
+  font-size: 30px;
+}
+
+.footer blockquote {
+  font-size: 16px;
+  margin-left: 48px;
+  margin-top: 12px;
+  margin-bottom: 44px;
+}
+
+.footer-copyright {
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #464646;
+  margin-left: 48px;
+  padding-bottom: 24px;
+}

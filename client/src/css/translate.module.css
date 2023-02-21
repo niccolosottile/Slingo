@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.container {
+  background-color: #ffeee1;
+  background-size: cover;
+  height: 100vh;
+}
+
+.camera-view {
+  /* Align central */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  margin-left: 64px;
+  margin-right: 64px;
+}
+
+.webcam {
+  transform: scale(0.9);
+}
+
+.results-container {
+  margin-top: 12px;
+  /* Align central */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-container-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  position: relative;
+  padding: 48px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 #00000033;
+}
+
+.clear-output-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+
+.clear-output-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #464444;
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
+}
+
+.clear-output-button:hover {
+  color: #ff7d1e;
+  cursor: pointer;
+}
+
+.results {
+  color: #3F3F3F;
+  font-size: 16px;
+  /* Align central */
+  align-self: center;
+}
