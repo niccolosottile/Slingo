@@ -36,8 +36,6 @@ export default function Create() {
             return;
         });
 
-        console.log("ns1");
-
         setForm({ name: "", position: "", level: "" });
         navigate("/");
     }

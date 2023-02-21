@@ -35,8 +35,6 @@ export default function RecordList() {
 
             const records = await response.json();
 
-            records.then(console.log(records));
-
             setRecords(records);
         }
 
