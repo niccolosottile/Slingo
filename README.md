@@ -4,8 +4,8 @@ Web application aiming at dimishing the communication barrier for deaf or hearin
 
 To run the web application:
 
-1. cd into the server folder and run the command "node server.js"
-2. cd into the client folder and run the command "npm start"
+1. cd into the server folder and run the command "node server.js" (serves port 5000)
+2. cd into the client folder and run the command "npm start" (serves port 3000)
 
 
 Application developed for the ESP (Experimental Systems Project) at the University of Bath in a team of 7 using Agile Scrum Methodology.
