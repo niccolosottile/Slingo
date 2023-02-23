@@ -15,7 +15,7 @@ const ObjectId = require("mongodb").ObjectId;
 recordRoutes.route("/record").get(async function (req, res) {
     let db_connect = dbo.getDb();
     
-    const cursor = db_connect.collection("records").find({});
+    const cursor = db_connect.collection("users").find({});
 
     const result = await cursor.toArray();
 
@@ -30,22 +30,22 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
         _id: new ObjectId(req.params.id)
     };
 
-    const result = await db_connect.collection("records").findOne(myquery);
+    const result = await db_connect.collection("users").findOne(myquery);
 
     res.json(result);
 });
 
 // This section will help you create a new record.
-recordRoutes.route("/record/add").post(function (req, response) {
+recordRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
 
     let myobj = {
         name: req.body.name,
-        position: req.body.position,
-        level: req.body.level,
+        email: req.body.email,
+        password: req.body.password,
     };
 
-    db_connect.collection("records").insertOne(myobj);
+    db_connect.collection("users").insertOne(myobj);
 
     response.send("Document inserted into database");
 });
@@ -66,7 +66,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
         },
     };
     
-    db_connect.collection("records").updateOne(myquery, newvalues);
+    db_connect.collection("users").updateOne(myquery, newvalues);
 
     response.send("Document updated in database");
 });
@@ -79,7 +79,7 @@ recordRoutes.route("/:id").delete((req, response) => {
         _id: new ObjectId(req.params.id)
     };
 
-    db_connect.collection("records").deleteOne(myquery);
+    db_connect.collection("users").deleteOne(myquery);
 
     response.send("Deleted document from database");
 });

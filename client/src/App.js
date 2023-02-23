@@ -20,7 +20,6 @@ import NavbarNew from "./components/navbarNew";
 const App = () => {
     return (
         <div>
-            <NavbarNew />
             <Navbar />
             <Routes>
                 <Route exact path="/" element={<RecordList />} />

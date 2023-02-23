@@ -5,9 +5,9 @@ import SignupCSS from "../css/signup.module.css";
 
 export default function Signup() {
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
-    name: "",
   });
 
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function Signup() {
     // When a post request is sent to the create url, we'll add a new record to the database
     const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/record/add", {
+    await fetch("http://localhost:5000/user/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
