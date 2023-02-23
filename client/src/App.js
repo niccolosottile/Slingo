@@ -22,10 +22,10 @@ const App = () => {
         <div>
             <Navbar />
             <Routes>
-                <Route exact path="/" element={<RecordList />} />
+                <Route exact path="/" element={<Home />} />
                 <Route path="/edit/:id" element={<Edit />} />
                 <Route path="/create" element={<Create />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/recordList" element={<RecordList />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/inhome" element={<InHome />} />

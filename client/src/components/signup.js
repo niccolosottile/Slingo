@@ -8,6 +8,7 @@ export default function Signup() {
     name: "",
     email: "",
     password: "",
+    confirm_password: "",
   });
 
   const navigate = useNavigate();
@@ -23,7 +24,17 @@ export default function Signup() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database
+    // Do the field validation 
+
+    // Verify that password and confirm_password match
+
+
+    // Check that the user isn't already registered
+
+
+    // If the validation and verification is passed we'll send a request to the server to add the user
+
+    // Add password encryption before storing in database
     const newPerson = { ...form };
 
     await fetch("http://localhost:5000/user/add", {
@@ -105,6 +116,17 @@ export default function Signup() {
               id="password"
               value={form.password}
               onChange={(e) => updateForm({ password: e.target.value })}
+            />
+          </div>
+          <div>
+            <label className={SignupCSS["signup-form-label"]} htmlFor="confirm_password">
+              Confirm password
+            </label>
+            <input
+              type="password"
+              id="confirm_password"
+              value={form.confirm_password}
+              onChange={(e) => updateForm({ confirm_password: e.target.value })}
             />
           </div>
           <button className={SignupCSS["create-account-button"]} type="submit">
