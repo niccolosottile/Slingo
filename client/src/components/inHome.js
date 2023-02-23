@@ -1,6 +1,6 @@
 import React from "react";
 import InHomeCSS from "../css/inhome.module.css";
-import Navbar from "./navbarNew";
+import Navbar from "./navbar";
 
 export default function InHome() {
   return (

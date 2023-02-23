@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import QuizCSS from "../css/quiz.module.css";
-import Navbar from "./navbarNew";
+import Navbar from "./navbar";
 import Webcam from "react-webcam";
 
 export default function Quiz() {

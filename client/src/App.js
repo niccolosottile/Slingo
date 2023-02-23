@@ -4,7 +4,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Import all the components needed into the app
-import Navbar from "./components/navbar";
+import NavbarOld from "./components/navbarOld";
 import RecordList from "./components/recordList";
 import Edit from "./components/edit";
 import Create from "./components/create";
@@ -15,7 +15,7 @@ import Signup from "./components/signup";
 import InHome from "./components/inHome"; 
 import Quiz from "./components/quiz";
 import Translate from "./components/translate";
-import NavbarNew from "./components/navbarNew";
+import Navbar from "./components/navbar";
 
 const App = () => {
     return (

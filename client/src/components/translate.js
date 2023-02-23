@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import TranslateCSS from "../css/translate.module.css";
-import Navbar from "./navbarNew";
+import Navbar from "./navbar";
 import Webcam from "react-webcam";
 
 export default function Translate() {
