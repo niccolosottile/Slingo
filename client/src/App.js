@@ -15,10 +15,12 @@ import Signup from "./components/signup";
 import InHome from "./components/inHome"; 
 import Quiz from "./components/quiz";
 import Translate from "./components/translate";
+import NavbarNew from "./components/navbarNew";
 
 const App = () => {
     return (
         <div>
+            <NavbarNew />
             <Navbar />
             <Routes>
                 <Route exact path="/" element={<RecordList />} />
