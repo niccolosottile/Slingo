@@ -1,15 +1,77 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
+
 import LoginCSS from "../css/login.module.css";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // console.log("Username:", username);
-    // console.log("Password:", password);
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (!form.email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    }
+
+    if (!form.password.trim()) {
+      errors.password = 'Password is required';
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
   };
+
+  const navigate = useNavigate();
+
+  // These methods will update the state properties
+  function updateForm(value) {
+    return setForm((prev) => {
+        return { ...prev, ...value };
+    });
+  }
+
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    if (validateForm()) {
+      // Send request to verify login credentials
+      const credentials = { ...form };
+
+      const response = await fetch("http://localhost:5000/login", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(credentials),
+      })
+
+      if (response.status === 404) {
+        let errors = {};
+        errors.email = `There is no account associated with this email`;
+        setFormErrors(errors);
+        return;
+      } else if (response.status === 401) {
+        let errors = {};
+        errors.password = `The password is invalid`;
+        setFormErrors(errors);
+        return;
+      } else if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      navigate("/inhome");
+    }
+  }
 
   return (
     <div className={LoginCSS.container}>
@@ -42,17 +104,18 @@ export default function Login() {
       </div>
       <div className={LoginCSS["sub-container-2"]}>
         <h1 className={LoginCSS["login-header"]}>Login</h1>
-        <form className={LoginCSS["login-form"]} onSubmit={handleSubmit}>
+        <form className={LoginCSS["login-form"]} onSubmit={onSubmit}>
           <div>
-            <label className={LoginCSS["login-form-label"]} htmlFor="username">
-              Username
+            <label className={LoginCSS["login-form-label"]} htmlFor="email">
+              Email
             </label>
             <input
               type="text"
-              id="username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              id="email"
+              value={form.email}
+              onChange={(e) => updateForm({ email: e.target.value })}
             />
+            <div>{formErrors.email}</div>
           </div>
           <div>
             <label className={LoginCSS["login-form-label"]} htmlFor="password">
@@ -61,9 +124,10 @@ export default function Login() {
             <input
               type="password"
               id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
+              value={form.password}
+              onChange={(e) => updateForm({ password: e.target.value })}
             />
+            <div>{formErrors.password}</div>
             <a className={LoginCSS["forgot-password"]} href="#"> 
               Forgot password?
             </a>

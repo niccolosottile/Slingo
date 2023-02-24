@@ -39,6 +39,35 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
     res.json(result);
 });
 
+// This section will help you verify user login credentials
+recordRoutes.route("/login").post(async function (req, res) {
+    let db_connect = dbo.getDb();
+
+    let myquery = {
+        email: req.body.email
+    };
+
+    const user = await db_connect.collection("users").findOne(myquery);
+
+    if (!user) {
+        res.status(404).send("Status: Not found");
+    } else {
+        const hash = user.password;
+
+        bcrypt
+            .compare(req.body.password, hash)
+            .then(result => {
+                if (result) {
+                    res.status(200).send("Status: OK");
+                } else {
+                    res.status(401).send("Status: Unauthorized");
+                }
+            })
+            .catch(err => res.status(500).send(err))
+    }
+});
+
+
 // This section will help you get a single record by email
 recordRoutes.route("/user/:email").get(async function (req, res) {
     let db_connect = dbo.getDb();
@@ -52,9 +81,8 @@ recordRoutes.route("/user/:email").get(async function (req, res) {
     res.json(result); 
 });
 
-
 // This section will help you create a new record.
-recordRoutes.route("/user/add").post(function (req, response) {
+recordRoutes.route("/user/add").post(function (req, res) {
     let db_connect = dbo.getDb();
 
     bcrypt
@@ -68,13 +96,13 @@ recordRoutes.route("/user/add").post(function (req, response) {
 
             db_connect.collection("users").insertOne(myobj);
 
-            response.status(200).send("User registered");
+            res.status(200).send("Status: User registered");
         })
-        .catch(err => response.status(500).send(err))
+        .catch(err => res.status(500).send(err))
 });
 
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
+recordRoutes.route("/update/:id").post(function (req, res) {
     let db_connect = dbo.getDb();
 
     let myquery = {
@@ -91,11 +119,11 @@ recordRoutes.route("/update/:id").post(function (req, response) {
     
     db_connect.collection("users").updateOne(myquery, newvalues);
 
-    response.send("Document updated in database");
+    res.status(200).send("Document updated in database");
 });
 
 // This section will help you delete a record
-recordRoutes.route("/:id").delete((req, response) => {
+recordRoutes.route("/:id").delete((req, res) => {
     let db_connect = dbo.getDb();
 
     let myquery = {
@@ -104,7 +132,7 @@ recordRoutes.route("/:id").delete((req, response) => {
 
     db_connect.collection("users").deleteOne(myquery);
 
-    response.send("Deleted document from database");
+    res.status(200).send("Deleted document from database");
 });
 
 module.exports = recordRoutes;

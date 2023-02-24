@@ -47,9 +47,6 @@ export default function Signup() {
     }
 
     setFormErrors(errors);
-
-    console.log(errors);
-
     return isValid;
   };
 
@@ -78,8 +75,9 @@ export default function Signup() {
       const user = await response.json();
 
       if (user) {
-        const message = `An account associated with this email already exists`;
-        window.alert(message);
+        let errors = {};
+        errors.email = `This email is already associated with an account`;
+        setFormErrors(errors);
         return;
       }
 
