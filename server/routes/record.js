@@ -15,30 +15,6 @@ const ObjectId = require("mongodb").ObjectId;
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-// This section will help you get a list of all the records.
-recordRoutes.route("/record").get(async function (req, res) {
-    let db_connect = dbo.getDb();
-    
-    const cursor = db_connect.collection("users").find({});
-
-    const result = await cursor.toArray();
-
-    res.json(result);
-});
-
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(async function (req, res) {
-    let db_connect = dbo.getDb();
-
-    let myquery = {
-        _id: new ObjectId(req.params.id)
-    };
-
-    const result = await db_connect.collection("users").findOne(myquery);
-
-    res.json(result);
-});
-
 // This section will help you verify user login credentials
 recordRoutes.route("/login").post(async function (req, res) {
     let db_connect = dbo.getDb();
@@ -68,7 +44,7 @@ recordRoutes.route("/login").post(async function (req, res) {
 });
 
 
-// This section will help you get a single record by email
+// This section will help you get a single user by email
 recordRoutes.route("/user/:email").get(async function (req, res) {
     let db_connect = dbo.getDb();
 
@@ -81,7 +57,7 @@ recordRoutes.route("/user/:email").get(async function (req, res) {
     res.json(result); 
 });
 
-// This section will help you create a new record.
+// This section will help you add a user 
 recordRoutes.route("/user/add").post(function (req, res) {
     let db_connect = dbo.getDb();
 
@@ -99,6 +75,30 @@ recordRoutes.route("/user/add").post(function (req, res) {
             res.status(200).send("Status: User registered");
         })
         .catch(err => res.status(500).send(err))
+});
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/record").get(async function (req, res) {
+    let db_connect = dbo.getDb();
+    
+    const cursor = db_connect.collection("users").find({});
+
+    const result = await cursor.toArray();
+
+    res.json(result);
+});
+
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(async function (req, res) {
+    let db_connect = dbo.getDb();
+
+    let myquery = {
+        _id: new ObjectId(req.params.id)
+    };
+
+    const result = await db_connect.collection("users").findOne(myquery);
+
+    res.json(result);
 });
 
 // This section will help you update a record by id.
