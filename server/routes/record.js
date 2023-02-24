@@ -35,6 +35,29 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
     res.json(result);
 });
 
+// This section will help you get a single record by email : will return True/False based off email
+recordRoutes.route("/record/search/:email").get(async function (req, res) {
+    let db_connect = dbo.getDb();
+    console.log("slatt");
+    //res.json("sucess");
+    console.log(req.params.email);
+
+    let myquery = {
+        email: req.params.email
+    };
+
+    const result = await db_connect.collection("users").findOne(myquery);
+    if (result){
+        res.json(true)
+    }
+    else{
+        res.json(false)
+    }
+
+    //res.json(result); 
+});
+
+
 // This section will help you create a new record.
 recordRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
@@ -83,5 +106,7 @@ recordRoutes.route("/:id").delete((req, response) => {
 
     response.send("Deleted document from database");
 });
+
+
 
 module.exports = recordRoutes;
