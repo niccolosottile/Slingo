@@ -73,7 +73,7 @@ export default function Login() {
           </button>
           <div className={LoginCSS["link-to-signup"]}>
             <p>
-              Not a user? <a href="#">Sign up</a>
+              Not a user? <a href="/signup">Sign up</a>
             </p>
           </div>
           <svg

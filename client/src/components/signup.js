@@ -30,11 +30,23 @@ export default function Signup() {
 
 
     // Check that the user isn't already registered
+    const response = await fetch(`http://localhost:5000/user/${form.email}`);
 
+    if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+    }
+
+    const user = await response.json();
+
+    if (user) {
+      const message = `An account associated with this email already exists`;
+      window.alert(message);
+      return;
+    }
 
     // If the validation and verification is passed we'll send a request to the server to add the user
-
-    // Add password encryption before storing in database
     const newPerson = { ...form };
 
     await fetch("http://localhost:5000/user/add", {

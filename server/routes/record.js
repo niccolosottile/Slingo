@@ -11,6 +11,10 @@ const dbo = require("../db/conn");
 // This will help convert the id from string to ObjectId for the _id
 const ObjectId = require("mongodb").ObjectId;
 
+// Used for password hashing
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(async function (req, res) {
     let db_connect = dbo.getDb();
@@ -35,26 +39,17 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
     res.json(result);
 });
 
-// This section will help you get a single record by email : will return True/False based off email
-recordRoutes.route("/record/search/:email").get(async function (req, res) {
+// This section will help you get a single record by email
+recordRoutes.route("/user/:email").get(async function (req, res) {
     let db_connect = dbo.getDb();
-    console.log("slatt");
-    //res.json("sucess");
-    console.log(req.params.email);
 
     let myquery = {
         email: req.params.email
     };
 
     const result = await db_connect.collection("users").findOne(myquery);
-    if (result){
-        res.json(true)
-    }
-    else{
-        res.json(false)
-    }
 
-    //res.json(result); 
+    res.json(result); 
 });
 
 
@@ -62,15 +57,20 @@ recordRoutes.route("/record/search/:email").get(async function (req, res) {
 recordRoutes.route("/user/add").post(function (req, response) {
     let db_connect = dbo.getDb();
 
-    let myobj = {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-    };
+    bcrypt
+        .hash(req.body.password, saltRounds)
+        .then(hash => {
+            let myobj = {
+                name: req.body.name,
+                email: req.body.email,
+                password: hash,
+            };
 
-    db_connect.collection("users").insertOne(myobj);
+            db_connect.collection("users").insertOne(myobj);
 
-    response.send("Document inserted into database");
+            response.status(200).send("User registered");
+        })
+        .catch(err => response.status(500).send(err))
 });
 
 // This section will help you update a record by id.
