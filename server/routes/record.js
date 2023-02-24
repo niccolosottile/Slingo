@@ -107,6 +107,4 @@ recordRoutes.route("/:id").delete((req, response) => {
     response.send("Deleted document from database");
 });
 
-
-
 module.exports = recordRoutes;

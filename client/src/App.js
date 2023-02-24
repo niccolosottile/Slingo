@@ -20,7 +20,6 @@ import Navbar from "./components/navbar";
 const App = () => {
     return (
         <div>
-            <Navbar />
             <Routes>
                 <Route exact path="/" element={<Home />} />
                 <Route path="/edit/:id" element={<Edit />} />
