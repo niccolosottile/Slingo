@@ -8,7 +8,47 @@ export default function Signup() {
     name: "",
     email: "",
     password: "",
+    confirm_password: "",
   });
+
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    let errors = {};
+    let isValid = true;
+
+    if (!form.name.trim()) {
+      errors.name = 'Name is required';
+      isValid = false;
+    }
+
+    if (!form.email.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
+      errors.email = 'Email is invalid';
+      isValid = false;
+    }
+
+    if (!form.password.trim()) {
+      errors.password = 'Password is required';
+      isValid = false;
+    } else if (form.password.length < 6) {
+      errors.password = 'Password must be at least 6 characters long';
+      isValid = false;
+    }
+
+    if (!form.confirm_password.trim()) {
+      errors.confirmPassword = 'Confirm Password is required';
+      isValid = false;
+    } else if (form.password !== form.confirm_password) {
+      errors.confirmPassword = 'Passwords do not match';
+      isValid = false;
+    }
+
+    setFormErrors(errors);
+    return isValid;
+  };
 
   const navigate = useNavigate();
 
@@ -19,26 +59,45 @@ export default function Signup() {
     });
   }
 
-  // This function will handle the submission
   async function onSubmit(e) {
     e.preventDefault();
 
-    // When a post request is sent to the create url, we'll add a new record to the database
-    const newPerson = { ...form };
+    if (validateForm()) {
+      // Check that the user isn't already registered
+      const response = await fetch(`http://localhost:5000/user/${form.email}`);
 
-    await fetch("http://localhost:5000/user/add", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newPerson),
-    })
-    .catch(error => {
-        window.alert(error);
+      if (!response.ok) {
+          const message = `An error occurred: ${response.statusText}`;
+          window.alert(message);
+          return;
+      }
+
+      const user = await response.json();
+
+      if (user) {
+        let errors = {};
+        errors.email = `This email is already associated with an account`;
+        setFormErrors(errors);
         return;
-    });
+      }
 
-    navigate("/login");
+      // Send the request to register the user
+      const newPerson = { ...form };
+
+      await fetch("http://localhost:5000/user/add", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newPerson),
+      })
+      .catch(error => {
+          window.alert(error);
+          return;
+      });
+
+      navigate("/login");
+    }
   }
 
   // This section will display the form that takes the input from the user
@@ -84,6 +143,7 @@ export default function Signup() {
               value={form.name}
               onChange={(e) => updateForm({ name: e.target.value })}
             />
+            <div>{formErrors.name}</div>
           </div>
           <div>
             <label className={SignupCSS["signup-form-label"]} htmlFor="email">
@@ -95,6 +155,7 @@ export default function Signup() {
               value={form.email}
               onChange={(e) => updateForm({ email: e.target.value })}
             />
+            <div>{formErrors.email}</div>
           </div>
           <div>
             <label className={SignupCSS["signup-form-label"]} htmlFor="password">
@@ -106,6 +167,19 @@ export default function Signup() {
               value={form.password}
               onChange={(e) => updateForm({ password: e.target.value })}
             />
+            <div>{formErrors.password}</div>
+          </div>
+          <div>
+            <label className={SignupCSS["signup-form-label"]} htmlFor="confirm_password">
+              Confirm password
+            </label>
+            <input
+              type="password"
+              id="confirm_password"
+              value={form.confirm_password}
+              onChange={(e) => updateForm({ confirm_password: e.target.value })}
+            />
+            <div>{formErrors.confirmPassword}</div>
           </div>
           <button className={SignupCSS["create-account-button"]} type="submit">
             Create Account
