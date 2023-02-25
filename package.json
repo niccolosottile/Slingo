@@ -1,12 +1,24 @@
 {
+  "name": "slingo",
+  "version": "1.0.0",
+  "description": "Slingo aims at dimishing the communication barrier for deaf people. It uses deep learning with image recognition to translate sign language from visual user input, providing a course and translation service.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niccolosottile/slingo.git"
+  },
+  "author": "ESP group 19 at University of Bath",
+  "license": "UNLICENSED",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/niccolosottile/slingo/issues"
+  },
+  "homepage": "https://github.com/niccolosottile/slingo#readme",
   "scripts": {
     "client": "npm run start --prefix client",
     "server": "npm run start --prefix server",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "concurrently": "^7.6.0",
-    "nodemon": "^2.0.20"
+  "devDependencies": {
+    "concurrently": "^7.6.0"
   }
 }
