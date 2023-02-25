@@ -43,7 +43,6 @@ recordRoutes.route("/login").post(async function (req, res) {
     }
 });
 
-
 // This section will help you get a single user by email
 recordRoutes.route("/user/:email").get(async function (req, res) {
     let db_connect = dbo.getDb();

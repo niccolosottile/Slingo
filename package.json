@@ -1,5 +1,13 @@
 {
+  "scripts": {
+    "client": "cross-env NODE_ENV=development webpack-dev-server --config config/webpack.dev.js",
+    "server": "npx nodemon server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
   "dependencies": {
-    "bcrypt": "^5.1.0"
+    "bcrypt": "^5.1.0",
+    "concurrently": "^7.6.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.20"
   }
 }
