@@ -142,6 +142,7 @@ export default function Signup() {
               id="name"
               value={form.name}
               onChange={(e) => updateForm({ name: e.target.value })}
+              placeholder={"Enter Your Full Name Here"}
             />
             <div>{formErrors.name}</div>
           </div>
@@ -154,6 +155,7 @@ export default function Signup() {
               id="email"
               value={form.email}
               onChange={(e) => updateForm({ email: e.target.value })}
+              placeholder={"Enter Personal Email Here"}
             />
             <div>{formErrors.email}</div>
           </div>
@@ -166,6 +168,7 @@ export default function Signup() {
               id="password"
               value={form.password}
               onChange={(e) => updateForm({ password: e.target.value })}
+              placeholder={"Do me a solid and get me some napkins. Oh you mean THESE NAPKINS"}
             />
             <div>{formErrors.password}</div>
           </div>
@@ -178,6 +181,7 @@ export default function Signup() {
               id="confirm_password"
               value={form.confirm_password}
               onChange={(e) => updateForm({ confirm_password: e.target.value })}
+              placeholder={"Mbappeeeeeeeeeeeeeeeeeeeeeee"}
             />
             <div>{formErrors.confirmPassword}</div>
           </div>

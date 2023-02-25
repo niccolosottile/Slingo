@@ -1,15 +1,17 @@
 import React from "react";
 import HomeCSS from "../css/home.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <div className={HomeCSS.container}>
       <body className={HomeCSS.body}>
         <nav className={HomeCSS.navbar}>
           <div className={HomeCSS["navbar-container"]}>
             <div className={HomeCSS["navbar-right"]}>
-              <button className={HomeCSS["navbar-button-login"]}>Login</button>
-              <button className={HomeCSS["navbar-button-signup"]}>Signup</button>
+              <button onClick={() => navigate("/login")} className={HomeCSS["navbar-button-login"]}>Login</button>
+              <button onClick={() => navigate("/signup")}className={HomeCSS["navbar-button-signup"]}>Signup</button>
             </div>
           </div>
         </nav>

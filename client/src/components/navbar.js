@@ -64,7 +64,7 @@ export default function Navbar() {
             </a>
           </div>
           <a className={NavbarCSS["user-name"]} href="#">Username</a>
-          <a className={NavbarCSS["logout-button"]} href="#">Logout</a>
+          <a className={NavbarCSS["logout-button"]} href="/">Logout</a>
         </div>
       </div>
     </nav>

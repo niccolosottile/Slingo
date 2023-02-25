@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import QuizCSS from "../css/quiz.module.css";
 import Navbar from "./navbar";
 import Webcam from "react-webcam";
