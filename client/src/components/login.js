@@ -114,7 +114,7 @@ export default function Login() {
               id="email"
               value={form.email}
               onChange={(e) => updateForm({ email: e.target.value })}
-              placeholder={"Enter Personal Email Here"}
+              placeholder={""}
             />
             <div>{formErrors.email}</div>
           </div>
@@ -127,7 +127,7 @@ export default function Login() {
               id="password"
               value={form.password}
               onChange={(e) => updateForm({ password: e.target.value })}
-              placeholder={"Ora Ora Ora Ora Ora *Dio gets beat up*"}
+              placeholder={""}
             />
             <div>{formErrors.password}</div>
             <a className={LoginCSS["forgot-password"]} href="#"> 
