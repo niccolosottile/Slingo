@@ -1,7 +1,17 @@
 import React from "react";
+
 import NavbarCSS from "../css/navbar.module.css";
 
 export default function Navbar() {
+
+  const name = localStorage.getItem("name");
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    window.location.reload();
+  };
+
   return (
     <nav className={NavbarCSS["navbar-container"]}>
       <div className={NavbarCSS["navbar-container-content"]}>
@@ -63,8 +73,8 @@ export default function Navbar() {
               </svg>
             </a>
           </div>
-          <a className={NavbarCSS["user-name"]} href="#">Username</a>
-          <a className={NavbarCSS["logout-button"]} href="/">Logout</a>
+          <a className={NavbarCSS["user-name"]} href="#">{name}</a>
+          <a className={NavbarCSS["logout-button"]} onClick={handleLogout}>Logout</a>
         </div>
       </div>
     </nav>

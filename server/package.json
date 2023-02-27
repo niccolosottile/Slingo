@@ -4,13 +4,19 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon server.js"
+    "start": "npx nodemon index.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.18.2",
-    "mongodb": "^5.0.1"
+    "joi": "^17.8.3",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.0.1",
+    "mongoose": "^6.10.0",
+    "nodemailer": "^6.9.1"
   },
   "devDependencies": {
     "dotenv": "^16.0.3",

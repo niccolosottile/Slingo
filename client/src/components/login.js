@@ -1,39 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import axios from "axios";
 
 import LoginCSS from "../css/login.module.css";
 
 export default function Login() {
-  const [form, setForm] = useState({
+  const [data, setData] = useState({
     email: "",
     password: "",
   });
-
-  const [formErrors, setFormErrors] = useState({});
-
-  const validateForm = () => {
-    let errors = {};
-    let isValid = true;
-
-    if (!form.email.trim()) {
-      errors.email = 'Email is required';
-      isValid = false;
-    }
-
-    if (!form.password.trim()) {
-      errors.password = 'Password is required';
-      isValid = false;
-    }
-
-    setFormErrors(errors);
-    return isValid;
-  };
-
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   // These methods will update the state properties
   function updateForm(value) {
-    return setForm((prev) => {
+    return setData((prev) => {
         return { ...prev, ...value };
     });
   }
@@ -41,35 +20,20 @@ export default function Login() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    if (validateForm()) {
-      // Send request to verify login credentials
-      const credentials = { ...form };
-
-      const response = await fetch("http://localhost:5000/login", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(credentials),
-      })
-
-      if (response.status === 404) {
-        let errors = {};
-        errors.email = `There is no account associated with this email`;
-        setFormErrors(errors);
-        return;
-      } else if (response.status === 401) {
-        let errors = {};
-        errors.password = `The password is invalid`;
-        setFormErrors(errors);
-        return;
-      } else if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
+    try {
+      const url = `http://localhost:8080/api/auth/`;
+      const { data: res } = await axios.post(url, data);
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("name", res.name);
+      window.location = "/";
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
       }
-
-      navigate("/inhome");
     }
   }
 
@@ -112,11 +76,10 @@ export default function Login() {
             <input
               type="text"
               id="email"
-              value={form.email}
+              value={data.email}
               onChange={(e) => updateForm({ email: e.target.value })}
-              placeholder={""}
+              placeholder={"Enter your email"}
             />
-            <div>{formErrors.email}</div>
           </div>
           <div>
             <label className={LoginCSS["login-form-label"]} htmlFor="password">
@@ -125,15 +88,15 @@ export default function Login() {
             <input
               type="password"
               id="password"
-              value={form.password}
+              value={data.password}
               onChange={(e) => updateForm({ password: e.target.value })}
-              placeholder={""}
+              placeholder={"Enter your password"}
             />
-            <div>{formErrors.password}</div>
-            <a className={LoginCSS["forgot-password"]} href="#"> 
+            <a className={LoginCSS["forgot-password"]} href="/forgot-password"> 
               Forgot password?
             </a>
           </div>
+          {error && <div>{error}</div>}
           <button className={LoginCSS["login-button"]} type="submit">
             Login
           </button>
