@@ -1,26 +1,31 @@
 import React from "react";
-
-// We use Route in order to define the different routes of our application 
 import { Route, Routes } from "react-router-dom";
 
-// Import all the components needed into the app
+import InHome from "./components/inHome"; 
 import Home from "./components/home";
 import Login from "./components/login";
 import Signup from "./components/signup";
-import InHome from "./components/inHome"; 
+import EmailVerify from "./components/emailVerify";
+import ForgotPassword from "./components/forgotPassword";
+import PasswordReset from "./components/passwordReset";
 import Quiz from "./components/quiz";
 import Translate from "./components/translate";
 
 const App = () => {
+    const user = localStorage.getItem("token");
+
     return (
         <div>
             <Routes>
+                {user && <Route exact path="/" element={<InHome />} />}
                 <Route exact path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/inhome" element={<InHome />} />
-                <Route path="/quiz" element={<Quiz />} />
-                <Route path="/translate" element={<Translate />} />
+                <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
+                {user && <Route path="/quiz" element={<Quiz />} />}
+                {user && <Route path="/translate" element={<Translate />} />}
             </Routes>
         </div>
     );

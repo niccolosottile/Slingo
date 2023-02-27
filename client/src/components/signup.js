@@ -1,60 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 import SignupCSS from "../css/signup.module.css";
 
 export default function Signup() {
-  const [form, setForm] = useState({
+  const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
-    confirm_password: "",
   });
-
-  const [formErrors, setFormErrors] = useState({});
-
-  const validateForm = () => {
-    let errors = {};
-    let isValid = true;
-
-    if (!form.name.trim()) {
-      errors.name = 'Name is required';
-      isValid = false;
-    }
-
-    if (!form.email.trim()) {
-      errors.email = 'Email is required';
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      errors.email = 'Email is invalid';
-      isValid = false;
-    }
-
-    if (!form.password.trim()) {
-      errors.password = 'Password is required';
-      isValid = false;
-    } else if (form.password.length < 6) {
-      errors.password = 'Password must be at least 6 characters long';
-      isValid = false;
-    }
-
-    if (!form.confirm_password.trim()) {
-      errors.confirmPassword = 'Confirm Password is required';
-      isValid = false;
-    } else if (form.password !== form.confirm_password) {
-      errors.confirmPassword = 'Passwords do not match';
-      isValid = false;
-    }
-
-    setFormErrors(errors);
-    return isValid;
-  };
+  const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
   // These methods will update the state properties
   function updateForm(value) {
-    return setForm((prev) => {
+    return setData((prev) => {
         return { ...prev, ...value };
     });
   }
@@ -62,42 +25,19 @@ export default function Signup() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    if (validateForm()) {
-      // Check that the user isn't already registered
-      const response = await fetch(`http://localhost:5000/user/${form.email}`);
-
-      if (!response.ok) {
-          const message = `An error occurred: ${response.statusText}`;
-          window.alert(message);
-          return;
+    try {
+      const url = `http://localhost:8080/api/users`;
+      const { data: res } = await axios.post(url, data);
+      setMsg(res.message);
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status <= 500
+      ) {
+        setError(error.response.data.message);
       }
-
-      const user = await response.json();
-
-      if (user) {
-        let errors = {};
-        errors.email = `This email is already associated with an account`;
-        setFormErrors(errors);
-        return;
-      }
-
-      // Send the request to register the user
-      const newPerson = { ...form };
-
-      await fetch("http://localhost:5000/user/add", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newPerson),
-      })
-      .catch(error => {
-          window.alert(error);
-          return;
-      });
-
-      navigate("/login");
-    }
+    }   
   }
 
   // This section will display the form that takes the input from the user
@@ -140,11 +80,11 @@ export default function Signup() {
             <input
               type="text"
               id="name"
-              value={form.name}
+              value={data.name}
+              required
               onChange={(e) => updateForm({ name: e.target.value })}
-              placeholder={""}
+              placeholder={"Enter your name"}
             />
-            <div>{formErrors.name}</div>
           </div>
           <div>
             <label className={SignupCSS["signup-form-label"]} htmlFor="email">
@@ -153,11 +93,11 @@ export default function Signup() {
             <input
               type="text"
               id="email"
-              value={form.email}
+              value={data.email}
+              required
               onChange={(e) => updateForm({ email: e.target.value })}
-              placeholder={""}
+              placeholder={"Enter your email"}
             />
-            <div>{formErrors.email}</div>
           </div>
           <div>
             <label className={SignupCSS["signup-form-label"]} htmlFor="password">
@@ -166,25 +106,14 @@ export default function Signup() {
             <input
               type="password"
               id="password"
-              value={form.password}
+              value={data.password}
+              required
               onChange={(e) => updateForm({ password: e.target.value })}
-              placeholder={""}
+              placeholder={"Enter a password"}
             />
-            <div>{formErrors.password}</div>
           </div>
-          <div>
-            <label className={SignupCSS["signup-form-label"]} htmlFor="confirm_password">
-              Confirm password
-            </label>
-            <input
-              type="password"
-              id="confirm_password"
-              value={form.confirm_password}
-              onChange={(e) => updateForm({ confirm_password: e.target.value })}
-              placeholder={""}
-            />
-            <div>{formErrors.confirmPassword}</div>
-          </div>
+          {error && <div>{error}</div>}
+					{msg && <div>{msg}</div>}
           <button className={SignupCSS["create-account-button"]} type="submit">
             Create Account
           </button>
