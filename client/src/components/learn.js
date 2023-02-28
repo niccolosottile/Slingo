@@ -2,9 +2,8 @@ import React from "react"
 import learnCSS from "../css/learn.module.css"
 import Navbar from "./navbar"
 import { useNavigate } from "react-router-dom";
-
-// import "react-step-progress-bar/styles.css";
-// import { ProgressBar } from "react-step-progress-bar";
+import "react-step-progress-bar/styles.css";
+import { ProgressBar } from "react-step-progress-bar";
 
 
 export default function Learn() {
@@ -17,13 +16,13 @@ export default function Learn() {
         <div className={learnCSS.title}>
             <h1 className={learnCSS["learn-title"]}>Learn</h1>
             <p className={learnCSS["learn-text"]}>What do you want to learn today?</p>
-            {/* <div className="progress-bar">
+            {<div className="progress-bar">
             <ProgressBar 
             width={600}
             text="20% Progress"
             percent={20} 
             filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"/>
-            </div> */}
+            </div>}
         </div>
         <div className={learnCSS["navigation-buttons"]}>
             <button onClick={() => navigate("/quiz")} className={learnCSS["greeting-button"]}>Greetings</button>
