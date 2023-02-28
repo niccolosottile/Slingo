@@ -35,11 +35,9 @@ function Translate() {
 		const net = await tf.loadGraphModel(
 			"https://raw.githubusercontent.com/dp846/SlingoModels/main/model.json"
 		); //Loads the model
-
-
-		// await net.load(
-		// 	"https://raw.githubusercontent.com/dp846/SlingoModels/main/group1-shard.bin"
-		// ); //Loads the weights, not needed I think
+		await net.load(
+			"https://raw.githubusercontent.com/dp846/SlingoModels/main/group1-shard.bin"
+			); //Loads the weights
 
 		// Loop and detect hands
 		setInterval(() => {
@@ -76,15 +74,15 @@ function Translate() {
 
 
 
-			//model indexes for greetings model
-			// const boxes = await obj[2].array();
-			// const classes = await obj[4].array();
-			// const scores = await obj[7].array();
+			// model indexes for greetings model
+			const boxes = await obj[2].array();
+			const classes = await obj[4].array();
+			const scores = await obj[7].array();
 
-			//model indexes for family model
-			const boxes = await obj[3].array();
-			const classes = await obj[7].array();
-			const scores = await obj[4].array();
+			// //model indexes for family model
+			// const boxes = await obj[3].array();
+			// const classes = await obj[7].array();
+			// const scores = await obj[4].array();
 
 
 
@@ -118,7 +116,7 @@ function Translate() {
 		runCoco();
 	}, []);
 
-  console.log(translatedString)
+//   console.log(translatedString)
 
 	return (
 		<div className={TranslatePageCSS.container}>
