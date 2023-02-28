@@ -33,7 +33,6 @@ export default function PasswordReset() {
             const { data } = await axios.post(url, { password });
             setMsg(data.message);
             setError(""); 
-            console.log("ns1");
             window.location = "/login";
         } catch (error) {
             if (

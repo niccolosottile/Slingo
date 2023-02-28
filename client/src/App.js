@@ -25,7 +25,7 @@ const App = () => {
                 <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
-                <Route path="/learn" element={<Learn/>}/>
+                {user && <Route path="/learn" element={<Learn/>}/>}
                 {user && <Route path="/quiz" element={<Quiz />} />}
                 {user && <Route path="/translate" element={<Translate />} />}
             </Routes>
