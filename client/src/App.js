@@ -10,6 +10,7 @@ import ForgotPassword from "./components/forgotPassword";
 import PasswordReset from "./components/passwordReset";
 import Quiz from "./components/quiz";
 import Translate from "./components/translate";
+import Learn from "./components/learn";
 
 const App = () => {
     const user = localStorage.getItem("token");
@@ -24,6 +25,7 @@ const App = () => {
                 <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
+                <Route path="/learn" element={<Learn/>}/>
                 {user && <Route path="/quiz" element={<Quiz />} />}
                 {user && <Route path="/translate" element={<Translate />} />}
             </Routes>
