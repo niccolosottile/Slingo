@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
 import axios from "axios";
 
 import SignupCSS from "../css/signup.module.css";
@@ -13,7 +13,7 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // These methods will update the state properties
   function updateForm(value) {
