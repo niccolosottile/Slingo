@@ -15,8 +15,8 @@ export default function Learn() {
     <div className={learnCSS.container}>
         <Navbar/>
         <div className={learnCSS.title}>
-            <h1>Learn</h1>
-            <p>What do you want to learn today?</p>
+            <h1 className={learnCSS["learn-title"]}>Learn</h1>
+            <p className={learnCSS["learn-text"]}>What do you want to learn today?</p>
             {/* <div className="progress-bar">
             <ProgressBar 
             width={600}

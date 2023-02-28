@@ -2,27 +2,38 @@
 @import url("https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:600,700,800&display=swap");
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Plus Jakarta Sans", sans-serif;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
 
 .container {
-    background-color:  #fce9da;
-    height: 100vh
+  background-color: #ffeee1;
+  height: 100vh;
 }
 
 .title {
-    margin-left: 80px;
-    margin-top: 80px;
-    font-size: 40px;
+  margin-left: 80px;
+  margin-top: 80px;
+  font-size: 40px;
+}
 
+.learn-title {
+  color: #373737;
+  font-size: 56px;
+  font-weight: 800;
+}
+
+.learn-text {
+  color: #4E4E4E;
+  font-size: 24px;
+  margin-top: 16px;
 }
 
 .progress-bar {
-    margin-top: 30px;
-    margin-right: 30px;
+  margin-top: 30px;
+  margin-right: 30px;
 }
 
 .navigation-buttons {
@@ -34,22 +45,21 @@
   margin-top: 80px;
 }
 
-
 .navigation-buttons button {
   flex: 1;
   width: 5%;
-  height: 400px;
+  height: 300px;
   color: #ffffff;
   font-size: 24px;
   font-weight: 700;
   text-align: center;
   padding: 120px 0;
   border-radius: 30px;
-  background-color: #FF6C2D;
+  background-color: #ff6c2d;
   border: none;
   transition: 0.3s;
 }
 
 .navigation-buttons button:hover {
-  background-color: #D15621;
+  background-color: #d15621;
 }
