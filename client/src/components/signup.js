@@ -29,6 +29,7 @@ export default function Signup() {
       const url = `http://localhost:8080/api/users`;
       const { data: res } = await axios.post(url, data);
       setMsg(res.message);
+      setError("");
     } catch (error) {
       if (
         error.response &&
@@ -36,6 +37,7 @@ export default function Signup() {
         error.response.status <= 500
       ) {
         setError(error.response.data.message);
+        setMsg("");
       }
     }   
   }
