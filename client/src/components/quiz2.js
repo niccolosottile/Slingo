@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 // import { nextFrame } from "@tensorflow/tfjs";
 import * as tf from "@tensorflow/tfjs";
 // 2. TODO - Import drawing utility here
-import { drawRectQuizGreetings } from "./utilities";
+import { drawRectQuizFamily } from "./utilities";
 import { useTranslatedSign } from "./translationUtils";
 import QuizCSS from "../css/quiz.module.css";
 import { useNavigate } from "react-router-dom";
@@ -33,11 +33,8 @@ export default function Quiz() {
 	const runCoco = async () => {
     // 3. TODO - Load network
 		const net = await tf.loadGraphModel(
-      "https://raw.githubusercontent.com/dp846/SlingoModels/main/model.json"
+      "https://raw.githubusercontent.com/dp846/SlingoModels/main/family_v1/model.json"
       ); //Loads the model
-      await net.load(
-        "https://raw.githubusercontent.com/dp846/SlingoModels/main/group1-shard.bin"
-        ); //Loads the weights
         
         // Loop and detect hands
         setInterval(() => {
@@ -47,13 +44,21 @@ export default function Quiz() {
       
       const questions = [
         {
-          questionText: "Sign: Hello",
-          answers: "hello",
+          questionText: "Sign: Step",
+          answers: "step",
         },
         {
-          questionText: "Sign: Thank you",
-          answers: "thanks",
+          questionText: "Sign: Father",
+          answers: "father",
         },
+        {
+			questionText: "Sign: Mother",
+			answers: "mother",
+		},
+		{
+		questionText: "Sign: Brother",
+		answers: "brother",
+		},
       ];
 
       const detect = async net => {
@@ -83,9 +88,15 @@ export default function Quiz() {
             const expanded = casted.expandDims(0);
             const obj = await net.executeAsync(expanded);
             
-            const boxes = await obj[2].array();
-            const classes = await obj[4].array();
-            const scores = await obj[7].array();
+            // const boxes = await obj[2].array();
+            // const classes = await obj[4].array();
+            // const scores = await obj[7].array();
+
+
+			//model indexes for family model
+			const boxes = await obj[3].array();
+			const classes = await obj[7].array();
+			const scores = await obj[4].array();
             
             // console.log(await obj[7].array())
             
@@ -95,7 +106,7 @@ export default function Quiz() {
             // 5. TODO - Update drawing utility
             // drawSomething(obj, ctx)
             requestAnimationFrame(() => {
-			drawRectQuizGreetings(
+				drawRectQuizFamily(
                 boxes[0],
                 classes[0],
                 scores[0],

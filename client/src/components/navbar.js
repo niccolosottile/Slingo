@@ -1,17 +1,9 @@
 import React from "react";
-
 import NavbarCSS from "../css/navbar.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-
-  const name = localStorage.getItem("name");
-  
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("name");
-    window.location.reload();
-  };
-
+  const navigate = useNavigate();
   return (
     <nav className={NavbarCSS["navbar-container"]}>
       <div className={NavbarCSS["navbar-container-content"]}>
@@ -34,7 +26,8 @@ export default function Navbar() {
         </div>
         <div className={NavbarCSS["navigation-section"]}>
           <div className={NavbarCSS["navigation-icons"]}>
-            <a href="#">
+            {/* go back to previous page use navigate */}
+            <a onClick={() => navigate(-1)}>
               <svg
                 width="60"
                 height="60"
@@ -50,7 +43,8 @@ export default function Navbar() {
                 />
               </svg>
             </a>
-            <a href="#">
+            {/* navigate to next page in hisotry */}
+            <a onClick={() => navigate(1)}>
               <svg
                 width="60"
                 height="60"
@@ -73,8 +67,8 @@ export default function Navbar() {
               </svg>
             </a>
           </div>
-          <a className={NavbarCSS["user-name"]} href="#">{name}</a>
-          <a className={NavbarCSS["logout-button"]} onClick={handleLogout}>Logout</a>
+          <a className={NavbarCSS["user-name"]} href="#">Username</a>
+          <a onClick={() => navigate("/home")} className={NavbarCSS["logout-button"]} href="#">Logout</a>
         </div>
       </div>
     </nav>

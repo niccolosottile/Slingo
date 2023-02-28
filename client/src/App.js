@@ -9,6 +9,7 @@ import EmailVerify from "./components/emailVerify";
 import ForgotPassword from "./components/forgotPassword";
 import PasswordReset from "./components/passwordReset";
 import Quiz from "./components/quiz";
+import Quiz2 from "./components/quiz2";
 import Translate from "./components/translate";
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
     return (
         <div>
             <Routes>
-                {user && <Route exact path="/" element={<InHome />} />}
+                {user && <Route exact path="/inhome" element={<InHome />} />}
                 <Route exact path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
@@ -25,6 +26,7 @@ const App = () => {
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
                 {user && <Route path="/quiz" element={<Quiz />} />}
+                {user && <Route path="/quiz2" element={<Quiz2 />} />}
                 {user && <Route path="/translate" element={<Translate />} />}
             </Routes>
         </div>
