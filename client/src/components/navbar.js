@@ -3,7 +3,16 @@ import NavbarCSS from "../css/navbar.module.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+
+  const name = localStorage.getItem("name");
   const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("name");
+    window.location = "/";
+  };
+
   return (
     <nav className={NavbarCSS["navbar-container"]}>
       <div className={NavbarCSS["navbar-container-content"]}>
@@ -68,7 +77,7 @@ export default function Navbar() {
             </a>
           </div>
           <a className={NavbarCSS["user-name"]} href="#">Username</a>
-          <a onClick={() => navigate("/home")} className={NavbarCSS["logout-button"]} href="#">Logout</a>
+          <a className={NavbarCSS["logout-button"]} onClick={handleLogout}>Logout</a>
         </div>
       </div>
     </nav>

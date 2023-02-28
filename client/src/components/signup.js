@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import axios from "axios";
 
 import SignupCSS from "../css/signup.module.css";
@@ -12,8 +11,6 @@ export default function Signup() {
   });
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
-
-  const navigate = useNavigate();
 
   // These methods will update the state properties
   function updateForm(value) {
@@ -29,6 +26,7 @@ export default function Signup() {
       const url = `http://localhost:8080/api/users`;
       const { data: res } = await axios.post(url, data);
       setMsg(res.message);
+      setError("");
     } catch (error) {
       if (
         error.response &&
@@ -36,6 +34,7 @@ export default function Signup() {
         error.response.status <= 500
       ) {
         setError(error.response.data.message);
+        setMsg("");
       }
     }   
   }

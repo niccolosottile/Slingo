@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import InHomeCSS from "../css/inhome.module.css";
 import Navbar from "./navbar";
-import { useNavigate } from "react-router-dom";
 
 export default function InHome() {
+  const name = localStorage.getItem("name");
   const navigate = useNavigate();
+
   return (
     <div className={InHomeCSS.container}>
       <Navbar/>
@@ -13,7 +15,7 @@ export default function InHome() {
         <p className={InHomeCSS.greeting}>Hello, Username</p>
       </div>
       <div className={InHomeCSS["navigation-buttons"]}>
-        <button onClick={() => navigate("/quiz")} className={InHomeCSS["translate-button"]}>Learn</button>
+        <button onClick={() => navigate("/learn")} className={InHomeCSS["translate-button"]}>Learn</button>
         <button onClick={() => navigate("/translate")} className={InHomeCSS["learn-button"]}>Translate</button>
       </div>
     </div>

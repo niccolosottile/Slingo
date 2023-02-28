@@ -2,7 +2,7 @@ import { useEffect, useState, Fragment } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
-import EmailVerifyCSS from "../css/emailverify.module.css";
+import EmailVerifyCSS from "../css/emailauth.module.css";
 
 export default function EmailVerify() {
     const [validUrl, setValidUrl] = useState(false);
