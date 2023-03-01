@@ -63,5 +63,10 @@ router.get("/:id/verify/:token/", async (req, res) => {
     }
 });
 
+router.get("/record",async(req,res)=>{
+    res.json(await User.find());
+
+})
+
 module.exports = router;
 
