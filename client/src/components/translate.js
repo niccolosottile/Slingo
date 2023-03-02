@@ -6,7 +6,7 @@ import * as tf from "@tensorflow/tfjs";
 // Import drawing utility here
 import { drawRectTranslate } from "./utilities";
 
-import TranslatePageCSS from "../css/translate.module.css";
+import TranslateCSS from "../css/translate.module.css";
 
 function Translate() {
 	const webcamRef = useRef(null);
@@ -103,23 +103,23 @@ function Translate() {
 	}, []);
 
 	return (
-		<div className={TranslatePageCSS.container}>
+		<div className={TranslateCSS.container}>
 			<Navbar />
-			<div className={TranslatePageCSS["results-container"]}>
-				<div className={TranslatePageCSS["results-container-content"]}>
-					<div className={TranslatePageCSS["clear-output-container"]}>
+			<div className={TranslateCSS["results-container"]}>
+				<div className={TranslateCSS["results-container-content"]}>
+					<div className={TranslateCSS["clear-output-container"]}>
 						<button
-							className={TranslatePageCSS["clear-output-button"]}
+							className={TranslateCSS["clear-output-button"]}
 							onClick={() => clearTranslatedString()}
 						>
 							Clear output
 						</button>
 					</div>
-					<p className={TranslatePageCSS.results}>{translatedString}</p>
+					<p className={TranslateCSS.results}>{translatedString}</p>
 				</div>
 			</div>
-			<div className={TranslatePageCSS["camera-view"]}>
-				<div className={TranslatePageCSS.webcam}>
+			<div className={TranslateCSS["camera-view"]}>
+				<div className={TranslateCSS.webcam}>
 					<Webcam
 						ref={webcamRef}
 						muted={true}
