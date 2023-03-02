@@ -131,7 +131,7 @@ export default function Quiz() {
 			<div className={QuizCSS.container}>
 				<Navbar />
 				<div className={QuizCSS["course-details"]}>
-					<p className={QuizCSS["course-heading"]}>Coursename - test</p>
+					<p className={QuizCSS["course-heading"]}>Family - test</p>
 					<p className={QuizCSS["question-count"]}>
 						{index + 1} out of {questions.length} questions left
 					</p>
@@ -180,7 +180,7 @@ export default function Quiz() {
 		<div className={QuizCSS.container}>
 			<Navbar />
 			<div className={QuizCSS["course-details"]}>
-				<p className={QuizCSS["course-heading"]}>Coursename - test</p>
+				<p className={QuizCSS["course-heading"]}>Family - test</p>
 				<p className={QuizCSS["question-count"]}>You have completed the test</p>
 			</div>
 			<div className={QuizCSS["header-container"]}>
