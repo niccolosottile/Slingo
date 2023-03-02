@@ -6,7 +6,6 @@ import * as tf from "@tensorflow/tfjs";
 // 2. TODO - Import drawing utility here
 import { drawRectTranslate } from "./utilities";
 import TranslatePageCSS from "../css/translate.module.css";
-import { useTranslatedSign } from "./translationUtils";
 
 function Translate() {
 	const webcamRef = useRef(null);

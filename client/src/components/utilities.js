@@ -1,5 +1,3 @@
-import { useTranslatedSign } from "./translationUtils";
-
 // The labelMap for the greetings model
 const labelMapGreetings = {
 	1: { name: "hello", color: "red" },
@@ -45,14 +43,13 @@ export const drawRectTranslate = (
 		if (scores[i] > threshold && boxes[i] && classes[i]) {
 			// Extract variables
 			const [y, x, height, width] = boxes[i];
-			const text = classes[i];
-			console.log(text)
+			const key = classes[i];
 
-			setTranslatedSign(labelMapGreetings[text]['name']); // update translated sign
-
+			// Update translated sign
+			setTranslatedSign(labelMapGreetings[key]['name']);
 
 			// Set styling
-			ctx.strokeStyle = labelMapGreetings[text]["color"];
+			ctx.strokeStyle = labelMapGreetings[key]["color"];
 			ctx.lineWidth = 4;
 			ctx.fillStyle = "white";
 			ctx.font = "30px Arial";
@@ -60,7 +57,7 @@ export const drawRectTranslate = (
 			// DRAW!!
 			ctx.beginPath();
 			ctx.fillText(
-				labelMapGreetings[text]['name'] + " - " + Math.round(scores[i] * 100) / 100,
+				labelMapGreetings[key]['name'] + " - " + Math.round(scores[i] * 100) / 100,
 				x * imgWidth,
 				y * imgHeight - 10
 			);
@@ -91,16 +88,20 @@ export const drawRectQuizGreetings = (
 		if (scores[i] > threshold && boxes[i] && classes[i]) {
 			// Extract variables
 			const [y, x, height, width] = boxes[i];
-			const text = classes[i];
-			setTranslatedSign(labelMapGreetings[text]["name"]); // update translated sign
+			const key = classes[i];
 
-			// Check if answer is correct
-			// if (labelMapGreetings[text]["name"] === answers) {
-			// 	setIsAnswerCorrect(true);
-			// } 
+			console.log(key);
+
+			// Update translated sign
+			setTranslatedSign(labelMapGreetings[key]["name"]);
+
+			/* Check if answer is correct
+			if (labelMapGreetings[key]["name"] === answers) {
+			 	setIsAnswerCorrect(true);
+			} */
 
 			// Set styling
-			ctx.strokeStyle = labelMapGreetings[text]["color"];
+			ctx.strokeStyle = labelMapGreetings[key]["color"];
 			ctx.lineWidth = 4;
 			ctx.fillStyle = "white";
 			ctx.font = "30px Arial";
@@ -108,7 +109,7 @@ export const drawRectQuizGreetings = (
 			// DRAW!!
 			ctx.beginPath();
 			ctx.fillText(
-				labelMapGreetings[text]["name"] + " - " + Math.round(scores[i] * 100) / 100,
+				labelMapGreetings[key]["name"] + " - " + Math.round(scores[i] * 100) / 100,
 				x * imgWidth,
 				y * imgHeight - 10
 			);
@@ -140,16 +141,18 @@ export const drawRectQuizFamily = (
 		if (scores[i] > threshold && boxes[i] && classes[i]) {
 			// Extract variables
 			const [y, x, height, width] = boxes[i];
-			const text = classes[i];
-			setTranslatedSign(labelMapFamily[text]["name"]); // update translated sign
+			const key = classes[i];
 
-			// Check if answer is correct
-			// if (labelMapFamily[text]["name"] === answers) {
-			// 	setIsAnswerCorrect(true);
-			// } 
+			// Update translated sign
+			setTranslatedSign(labelMapFamily[key]["name"]);
+
+			/* Check if answer is correct
+			if (labelMapGreetings[key]["name"] === answers) {
+			 	setIsAnswerCorrect(true);
+			} */
 
 			// Set styling
-			ctx.strokeStyle = labelMapFamily[text]["color"];
+			ctx.strokeStyle = labelMapFamily[key]["color"];
 			ctx.lineWidth = 4;
 			ctx.fillStyle = "white";
 			ctx.font = "30px Arial";
@@ -157,7 +160,7 @@ export const drawRectQuizFamily = (
 			// DRAW!!
 			ctx.beginPath();
 			ctx.fillText(
-				labelMapFamily[text]["name"] + " - " + Math.round(scores[i] * 100) / 100,
+				labelMapFamily[key]["name"] + " - " + Math.round(scores[i] * 100) / 100,
 				x * imgWidth,
 				y * imgHeight - 10
 			);
