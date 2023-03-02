@@ -1,57 +1,55 @@
+import React, { useRef, useState, useEffect } from "react";
 import Navbar from "./navbar";
 import Webcam from "react-webcam";
-import React, { useRef, useState, useEffect } from "react";
-// import { nextFrame } from "@tensorflow/tfjs";
 import * as tf from "@tensorflow/tfjs";
-// 2. TODO - Import drawing utility here
+
+// Import drawing utility here
 import { drawRectTranslate } from "./utilities";
+
 import TranslatePageCSS from "../css/translate.module.css";
 
 function Translate() {
 	const webcamRef = useRef(null);
 	const canvasRef = useRef(null);
 	const [translatedSign, setTranslatedSign] = useState(""); // state variable to store translated sign
-  const [translatedString, setTranslatedString] = useState(""); // state variable to store translated string
+  	const [translatedString, setTranslatedString] = useState(""); // state variable to store translated string
 
 
-  // concat translated sign to translated string when translatedSign is changed delay 1.5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setTranslatedString(translatedString + " " + translatedSign);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [translatedSign]);
+  	// concat translated sign to translated string when translatedSign is changed delay 1.5 seconds
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setTranslatedString(translatedString + " " + translatedSign);
+		}, 1500);
+		return () => clearTimeout(timer);
+	}, [translatedSign]);
 
 
-  // clear translated string when button clicked, ignoring the interval
-  const clearTranslatedString = () => {
-    setTranslatedString("");
-  };
+	// clear translated string when button clicked, ignoring the interval
+	const clearTranslatedString = () => {
+		setTranslatedString("");
+	};
 
 	// Main function
 	const runCoco = async () => {
-		// 3. TODO - Load network
+		// Loading the graph model
 		const net = await tf.loadGraphModel(
 			"https://raw.githubusercontent.com/dp846/SlingoModels/main/model.json"
-		); //Loads the model
-		await net.load(
-			"https://raw.githubusercontent.com/dp846/SlingoModels/main/group1-shard.bin"
-			); //Loads the weights
+		); 
 
-		// Loop and detect hands
+		// Detect every 16.7 ms
 		setInterval(() => {
 			detect(net);
 		}, 16.7);
 	};
 
-	const detect = async net => {
+	const detect = async (net) => {
 		// Check data is available
 		if (
 			typeof webcamRef.current !== "undefined" &&
 			webcamRef.current !== null &&
 			webcamRef.current.video.readyState === 4
 		) {
-			// Get Video Properties
+			// Get video properties
 			const video = webcamRef.current.video;
 			const videoWidth = webcamRef.current.video.videoWidth;
 			const videoHeight = webcamRef.current.video.videoHeight;
@@ -64,32 +62,21 @@ function Translate() {
 			canvasRef.current.width = videoWidth;
 			canvasRef.current.height = videoHeight;
 
-			// 4. TODO - Make Detections
+			// Make Detections
 			const img = tf.browser.fromPixels(video);
 			const resized = tf.image.resizeBilinear(img, [640, 480]);
 			const casted = resized.cast("int32");
 			const expanded = casted.expandDims(0);
 			const obj = await net.executeAsync(expanded);
 
-
-
-			// model indexes for greetings model
 			const boxes = await obj[2].array();
 			const classes = await obj[4].array();
 			const scores = await obj[7].array();
 
-			// //model indexes for family model
-			// const boxes = await obj[3].array();
-			// const classes = await obj[7].array();
-			// const scores = await obj[4].array();
-
-
-
 			// Draw mesh
 			const ctx = canvasRef.current.getContext("2d");
 
-			// 5. TODO - Update drawing utility
-			// drawSomething(obj, ctx)
+			// Update drawing utility
 			requestAnimationFrame(() => {
 				drawRectTranslate(
 					boxes[0],
@@ -99,7 +86,7 @@ function Translate() {
 					videoWidth,
 					videoHeight,
 					ctx,
-          setTranslatedSign
+          			setTranslatedSign,
 				);
 			});
 
@@ -114,8 +101,6 @@ function Translate() {
 	useEffect(() => {
 		runCoco();
 	}, []);
-
-//   console.log(translatedString)
 
 	return (
 		<div className={TranslatePageCSS.container}>
