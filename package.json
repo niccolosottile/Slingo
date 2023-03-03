@@ -20,5 +20,9 @@
   },
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "react-modal": "^3.16.1",
+    "react-step-progress-bar": "^1.0.3"
   }
 }
