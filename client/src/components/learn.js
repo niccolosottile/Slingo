@@ -27,8 +27,8 @@ export default function Learn() {
         retrieveProgress();
     }, []);
 
-    const [greetingsModalIsOpen, setGreetingsModalIsOpen] = React.useState(false);
-    const [familyModalIsOpen, setFamilyModalIsOpen] = React.useState(false);
+    const [greetingsModalIsOpen, setGreetingsModalIsOpen] = useState(false);
+    const [familyModalIsOpen, setFamilyModalIsOpen] = useState(false);
 
     const handleOpenGreetingsModal = () => {
         setGreetingsModalIsOpen(true);
