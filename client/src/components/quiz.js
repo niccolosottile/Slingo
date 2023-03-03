@@ -161,7 +161,7 @@ export default function Quiz() {
 					<button className={QuizCSS["skip-button"]} onClick={() => setIndex(index + 1)}>Skip →</button>
 				</div>
 				<div className={QuizCSS["leave-section"]}>
-					<button onClick={() => navigate("/")} className={QuizCSS["leave-button"]}>Leave session</button>
+					<button onClick={() => navigate("/learn")} className={QuizCSS["leave-button"]}>Leave session</button>
 				</div>
 			</div>
 		);
@@ -183,7 +183,7 @@ export default function Quiz() {
 					</div>
 				</div>
 				<div className={QuizCSS["leave-section"]}>
-					<button onClick={() => navigate("/")} className={QuizCSS["leave-button"]}>Leave session</button>
+					<button onClick={() => navigate("/learn")} className={QuizCSS["leave-button"]}>Leave session</button>
 				</div>
 			</div>
 		</div>
