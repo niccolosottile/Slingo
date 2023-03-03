@@ -1,14 +1,31 @@
-import React from "react"
-import learnCSS from "../css/learn.module.css"
-import Navbar from "./navbar"
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar } from "react-step-progress-bar";
+import Navbar from "./navbar";
+import axios from "axios";
 
+import learnCSS from "../css/learn.module.css"
 
 export default function Learn() {
 
     const navigate = useNavigate();
+
+    const [progress, setProgress] = useState(0);
+    const userId = localStorage.getItem("userid");
+
+    useEffect(() => {
+        const retrieveProgress = async () => {
+            try {
+                const url = `http://localhost:8080/api/progress/${userId}`;
+                const { data: res } = await axios.get(url);
+                setProgress(res.overallProgress);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        retrieveProgress();
+    }, []);
     
     return (
     <div className={learnCSS.container}>
@@ -19,8 +36,8 @@ export default function Learn() {
             {<div className="progress-bar">
             <ProgressBar 
             width={600}
-            text="20% Progress"
-            percent={20} 
+            text={`${progress}% Progress`}
+            percent={progress} 
             filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"/>
             </div>}
         </div>

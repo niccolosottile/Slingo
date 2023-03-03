@@ -23,8 +23,11 @@ export default function Login() {
     try {
       const url = `http://localhost:8080/api/auth/`;
       const { data: res } = await axios.post(url, data);
+
       localStorage.setItem("token", res.token);
       localStorage.setItem("name", res.name);
+      localStorage.setItem("userid", res.userId);
+      
       window.location = "/";
     } catch (error) {
       if (
