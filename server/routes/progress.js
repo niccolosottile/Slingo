@@ -14,11 +14,8 @@ router.post("/:id", async (req, res) => {
             res.status(401).send({ message: "Invalid request "});
         }
 
-        // Save progress for related user
-        const progress = await new Progress({
-            userId: user._id,
-            overallProgress: req.body.progress
-        }).save();
+        // Update progress for related user
+        await Progress.updateOne({ userId: user._id }, { overallProgress: req.body.newProgress });
 
         res.status(200).send({ message: "The user progress was saved successfully" });
     } catch (error) {
