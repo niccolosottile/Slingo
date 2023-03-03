@@ -7,6 +7,7 @@ const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const passwordResetRoutes = require("./routes/passwordReset");
 const progress = require("./routes/progress");
+const courses = require("./routes/courses");
 
 // database connection
 connection();
@@ -20,6 +21,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/password-reset", passwordResetRoutes);
 app.use("/api/progress", progress);
+app.use("/api/courses", courses);
 
 const port = process.env.PORT || 8080;
 app.listen(port, console.log(`Server is running on port: ${port}!`))
