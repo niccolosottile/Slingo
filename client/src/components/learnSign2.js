@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import learnSignCSS from "../css/learnSign.module.css";
 import Navbar from "./navbar";
+import axios from "axios";
 import father from "./family/father.jpg";
 import mother from "./family/mother.jpg";
 import son from "./family/son.jpg";
@@ -16,6 +17,34 @@ import your from "./family/your.jpg";
 
 export default function LearnSign2() {
 	const navigate = useNavigate();
+
+	const [progress, setProgress] = useState(0);
+	const userId = localStorage.getItem("userid");
+
+	useEffect(() => {
+		const retrieveProgress = async () => {
+			try {
+				const url = `http://localhost:8080/api/progress/${userId}`;
+				const { data: res } = await axios.get(url);
+				setProgress(res.overallProgress);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		retrieveProgress();
+	}, []);
+
+	const updateProgress = async () => {
+		try {
+			const url = `http://localhost:8080/api/progress/${userId}`;
+			const newProgress = progress + 1;
+			await axios.post(url, { newProgress });
+			setProgress(newProgress);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	const images = [
@@ -91,6 +120,7 @@ export default function LearnSign2() {
 	function handleNextClick() {
 		const nextIndex = (currentIndex + 1) % images.length;
 		setCurrentIndex(nextIndex);
+		updateProgress();
 	};
 
 	function handlePrevClick() {
