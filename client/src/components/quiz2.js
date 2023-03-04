@@ -60,6 +60,22 @@ export default function Quiz() {
             questionText: "Sign: Brother",
             answers: "brother",
 		},
+		{
+            questionText: "Sign: Your",
+            answers: "your",
+		},
+		{
+            questionText: "Sign: Baby",
+            answers: "baby",
+		},
+		{
+            questionText: "Sign: Sister",
+            answers: "sister",
+		},
+		{
+            questionText: "Sign: Son",
+            answers: "son",
+		}
     ];
 
 
@@ -133,7 +149,7 @@ export default function Quiz() {
 				<div className={QuizCSS["course-details"]}>
 					<p className={QuizCSS["course-heading"]}>Family - test</p>
 					<p className={QuizCSS["question-count"]}>
-						{index + 1} out of {questions.length} questions left
+						Question {index + 1} of {questions.length}
 					</p>
 				</div>
 				<div className={QuizCSS["header-container"]}>

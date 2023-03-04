@@ -49,9 +49,33 @@ export default function Quiz() {
 			answers: "hello",
 		},
 		{
-			questionText: "Sign: Thank you",
+			questionText: "Sign: Thanks",
 			answers: "thanks",
 		},
+		{
+			questionText: "Sign: Good",
+			answers: "good",
+		},
+		{
+			questionText: "Sign: Afternoon",
+			answers: "afternoon",
+		},
+		{
+			questionText: "Sign: Meet",
+			answers: "meet",
+		},
+		{
+			questionText: "Sign: You",
+			answers: "you",
+		},
+		{
+			questionText: "Sign: How",
+			answers: "how",
+		},
+		{
+			questionText: "Sign: Bad",
+			answers: "bad",
+		}
 	];
 
     const detect = async (net) => {
@@ -124,7 +148,7 @@ export default function Quiz() {
 				<div className={QuizCSS["course-details"]}>
 					<p className={QuizCSS["course-heading"]}>Greetings - test</p>
 					<p className={QuizCSS["question-count"]}>
-						{index + 1} out of {questions.length} questions left
+						Question {index + 1} of {questions.length}
 					</p>
 				</div>
 				<div className={QuizCSS["header-container"]}>
