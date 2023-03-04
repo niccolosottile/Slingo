@@ -154,10 +154,7 @@ export default function LearnSign2() {
 				<p className={learnSignCSS.description}>
 					{signs[currentIndex]["description"]}
 				</p>
-				<button
-					onClick={() => navigate("/learn")}
-					className={learnSignCSS["leave-button"]}
-				>
+				<button onClick={() => navigate("/learn")} className={learnSignCSS["leave-button"]}>
 					Leave session
 				</button>
 			</div>
