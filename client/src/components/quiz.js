@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./navbar";
 import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
+import Modal from "react-modal"
 
 // Import drawing utility here
 import { drawRectQuizGreetings } from "./utilities";
@@ -10,7 +11,10 @@ import { drawRectQuizGreetings } from "./utilities";
 import QuizCSS from "../css/quiz.module.css";
 
 export default function Quiz() {
+
+	
 	const navigate = useNavigate();
+
 
   	const [score, setScore] = useState(0);
 	const [index, setIndex] = useState(0);
@@ -139,6 +143,8 @@ export default function Quiz() {
 	useEffect(() => {
 		runCoco();
 	}, []);
+
+	
 
 
 	if (index !== questions.length) {

@@ -14,6 +14,7 @@ import Translate from "./components/translate";
 import Learn from "./components/learn";
 import LearnSign from "./components/learnSign";
 import LearnSign2 from "./components/learnSign2";
+import Tutorial from "./components/tutorial";
 
 const App = () => {
 	const user = localStorage.getItem("token");
@@ -28,6 +29,7 @@ const App = () => {
 				<Route path="/users/:id/verify/:token" element={<EmailVerify />}/>
 				<Route path="/forgot-password" element={<ForgotPassword />}/>
 				<Route path="/password-reset/:id/:token" element={<PasswordReset />}/>
+				<Route path="/tutorial" element={<Tutorial/>}/>
 				{user && (<Route path="/learn" element={<Learn />}/>)}
 				{user && (<Route path="/learnSign" element={<LearnSign />}/>)}
 				{user && (<Route path="/learnSign2" element={<LearnSign2 />}/>)}
