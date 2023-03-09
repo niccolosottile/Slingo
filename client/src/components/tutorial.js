@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 export default function Tutorial(){
 
 const navigate = useNavigate()
+localStorage.setItem('was_visited', 1)
 
 return (
 <div className={tutorialCSS.container}>

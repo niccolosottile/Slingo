@@ -8,15 +8,14 @@ export default function InHome() {
   const name = localStorage.getItem("name");
   const navigate = useNavigate();
 
-  CheckFirstVisit();
-  function CheckFirstVisit(){
-    if(localStorage.getItem('was_visited')){
+  useEffect(() => {
+    if (localStorage.getItem('was_visited')){
       return;
     }
     localStorage.setItem('was_visited', 1)
-    console.log("Just Visited")
-    navigate("/tutorial")
-  }
+    return(navigate("/tutorial"))
+
+  })
 
   return (
     <div className={InHomeCSS.container}>
