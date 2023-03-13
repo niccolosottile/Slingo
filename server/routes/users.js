@@ -4,6 +4,8 @@ const Token = require("../models/token");
 const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 const bcrypt = require("bcrypt");
+const passport=require("passport");
+console.log("hello");
 
 router.post("/", async (req, res) => {
     try {
@@ -24,10 +26,13 @@ router.post("/", async (req, res) => {
 
         user = await new User({ ...req.body, password: hashPassword }).save();
 
+
         const token = await new Token({
             userId: user._id,
             token: crypto.randomBytes(32).toString("hex")
         }).save();
+
+        
 
         const url = `${process.env.BASE_URL}users/${user.id}/verify/${token.token}/`;
         await sendEmail(user.email, "Verify email", url);
@@ -38,6 +43,7 @@ router.post("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error" });
     }
 });
+
 
 router.get("/:id/verify/:token/", async (req, res) => {
     try {
@@ -66,7 +72,60 @@ router.get("/:id/verify/:token/", async (req, res) => {
 router.get("/record",async(req,res)=>{
     res.json(await User.find());
 
+});
+
+
+router.delete("/:email",async(req,res)=>{
+    await User.deleteOne(User.findOne({email:req.params.email}));
+    res.json({"user deleted":true});
 })
+
+
+
+//google stuff
+router.get("/fail",(req,res)=>{
+    console,log("fail");
+	res.status(401).json({
+		error: true,
+		message: "Log in failure",
+	});
+});
+
+//router.get('/google',async(req,res)=> res.redirect("http://localhost:8080/api/users/auth/google/callback"))
+router.get('/auth/google', passport.authenticate('google', ['profile', 'email']), async (req, res) => {
+    console.log("auth!!");
+    if (req.isAuthenticated()) {
+      console.log('executed');
+      res.json({ message: 'success google' });
+    } else {
+      res.status(401).json({ message: 'Unauthorized' });
+    }
+  });
+  
+
+
+router.get('/auth/google/callback',passport.authenticate('google',{
+    failureRedirect:'/fail',
+    successRedirect:'http://localhost:3000'}, (req,res)=>{
+        console.log("auth/callback");
+    }))
+
+
+
+router.get('/session',(req,res)=>{
+    res.json(req.session);
+})
+
+
+router.get("/logout", (req, res) => {
+	req.logout();
+	res.redirect(process.env.CLIENT_URL);
+});
+
+router.get("/test",(req,res)=>{
+    res.json({message:"test works"});
+})
+
 
 module.exports = router;
 
