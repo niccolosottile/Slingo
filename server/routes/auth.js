@@ -5,6 +5,7 @@ const crypto = require("crypto");
 const sendEmail = require("../utils/sendEmail");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
+const passport=require("passport");
 
 router.post("/", async (req, res) => {
     try {
@@ -48,6 +49,14 @@ router.post("/", async (req, res) => {
         res.status(500).send({ message: "Internal Server Error" });
     }
 });
+
+
+router.get("/logout", (req, res) => {
+	req.logout();
+	res.redirect(process.env.CLIENT_URL);
+});
+
+//end of google stuff
 
 const validate = (data) => {
     const schema = Joi.object({
