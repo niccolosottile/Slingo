@@ -12,12 +12,51 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
 
+ async function google_signup(){
+  //window.alert("not done");
+  /*
+  try {
+    const url = `http://localhost:8080/api/users/auth/google/callback`;
+    
+    const { data: res } = await axios.get(url,{withCredentials:true});
+    window.alert("you sign");
+    //setMsg(res.message);
+    //setError("");
+    
+  } catch (error) {
+    window.alert(error.message);
+    if (
+      error.response &&
+      error.response.status >= 400 &&
+      error.response.status <= 500
+    ) {
+      setError(error.response.data.message);
+      setMsg("");
+    }
+  }   
+  */
+
+  
+  
+    const url="http://localhost:8080/api/users/auth/google";
+    //console.log("signing up with google");
+    window.alert(url);
+    console.log(url);
+    window.open(url,"_self");
+    
+
+ 
+  }
+
+  
+
   // These methods will update the state properties
   function updateForm(value) {
     return setData((prev) => {
         return { ...prev, ...value };
     });
   }
+ 
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -27,7 +66,9 @@ export default function Signup() {
       const { data: res } = await axios.post(url, data);
       setMsg(res.message);
       setError("");
+      window.alert("you sign");
     } catch (error) {
+      //window.alert(error.response.data);
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -136,7 +177,9 @@ export default function Signup() {
               fill="#868686"
             />
           </svg>
-          <a href="/auth/google" className={SignupCSS["continue-with-google-button"]}>
+          <button onClick={google_signup}> Sign up with Google</button>
+
+          <a href="#" onClick="google_signup()" className={SignupCSS["continue-with-google-button"]}>
             <svg
               width="406"
               height="80"

@@ -21,13 +21,18 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const url = `http://localhost:8080/api/auth/`;
+      
+      const url = `http://localhost:8080/api/auth`;
+      
       const { data: res } = await axios.post(url, data);
+      window.alert("testt");
       localStorage.setItem("token", res.token);
       localStorage.setItem("name", res.name);
       window.location = "/";
     } catch (error) {
+      window.alert(error.message);
       if (
+       
         error.response &&
         error.response.status >= 400 &&
         error.response.status <= 500
