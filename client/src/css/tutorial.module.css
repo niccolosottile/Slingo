@@ -25,6 +25,8 @@
 .video {
   /* justify-items: center;
   align-self: center; */
+  margin-top: -5vh;
+  margin-bottom: -5vh;
 }
 
 .container button {
