@@ -1,6 +1,6 @@
 import tutorialCSS from "../css/tutorial.module.css"
 import React from "react"
-import video2 from "../components/videos/slingo.mp4"
+import video2 from "../videos/slingo.mp4"
 import { useNavigate } from "react-router-dom"
 
 
