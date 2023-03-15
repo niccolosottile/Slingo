@@ -57,7 +57,7 @@ export default function Learn() {
                 <div className={learnCSS["progress-bar"]}>
                 <ProgressBar
                     width = {600}
-                    height = {15}
+                    height = {18}
                     text = {`${progress}% progress`}
                     percent = {progress} 
                 />
