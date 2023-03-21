@@ -21,48 +21,37 @@ export default function LearnSign() {
 	// Retrieving course details
 	const [loading, setLoading] = useState(true);
 	const [signs, setSigns] = useState([]);
+	const [signId, setSignId] = useState("");
 
 	useEffect(() => {
-		const retrieveSigns = async () => {
+		const retrieveSignsAndSetSign = async () => {
 			try {
 				const url = `http://localhost:8080/api/courses/greetings`;
 				const { data: res } = await axios.get(url);
 				setSigns(res.course.signs);
+				setSignId(res.course.signs[0]._id);
 				setLoading(false);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		retrieveSigns();
+		retrieveSignsAndSetSign();
 	}, []);
 
-	// Tracking user progress
-	const [progress, setProgress] = useState(0);
 	const userId = localStorage.getItem("userid");
-
+	const [currentIndex, setCurrentIndex] = useState(0);
+	
 	useEffect(() => {
-		const retrieveProgress = async () => {
+		const updateProgress = async () => {
 			try {
-				const url = `http://localhost:8080/api/progress/${userId}`;
-				const { data: res } = await axios.get(url);
-				setProgress(res.overallProgress);
+				const url = `http://localhost:8080/api/progress/${userId}/${signId}`;
+				await axios.post(url);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		retrieveProgress();
-	}, []);
-
-	const updateProgress = async () => {
-		try {
-			const url = `http://localhost:8080/api/progress/${userId}`;
-			const newProgress = progress + 1;
-			await axios.post(url, { newProgress });
-			setProgress(newProgress);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+		updateProgress();
+	}, [currentIndex]);
 
 	const images = [
 		{ src: afternoon, alt: "afternoon" },
@@ -78,17 +67,16 @@ export default function LearnSign() {
 		{ src: you, alt: "you" },
 	];
 
-	const [currentIndex, setCurrentIndex] = useState(0);
-
 	function handleNextClick() {
 		const nextIndex = (currentIndex + 1) % images.length;
 		setCurrentIndex(nextIndex);
-		updateProgress();
+		setSignId(signs[nextIndex]._id);
 	}
 
 	function handlePrevClick() {
 		const prevIndex = currentIndex === 0 ? images.length - 1 : currentIndex - 1;
 		setCurrentIndex(prevIndex);
+		setSignId(signs[prevIndex]._id);
 	}
 
 	if (!loading) {

@@ -19,7 +19,7 @@ export default function Learn() {
             try {
                 const url = `http://localhost:8080/api/progress/${userId}`;
                 const { data: res } = await axios.get(url);
-                setProgress(res.overallProgress);
+                setProgress(Math.round(res.overallProgress / 22 * 100));
             } catch (error) {
                 console.log(error);
             }

@@ -8,7 +8,11 @@ const progressSchema = new Schema({
         ref: "user",
         unique: true,
     },
-    overallProgress: { type: Number, required: true}
+    overallProgress: { type: Number, required: true},
+    signs: [{
+        type: Schema.Types.ObjectId,
+        ref: "sign"
+    }]
 });
 
 module.exports = mongoose.model("progress", progressSchema);
