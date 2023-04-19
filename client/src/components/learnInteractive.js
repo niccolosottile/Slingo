@@ -173,11 +173,9 @@ export default function LearnSign() {
         }
     };
 
-    useEffect(() => {
-        runCoco();
-    }, [loading]);
-
     if (!loading) {
+        runCoco();
+        
 		return (
 			<div className={learnSignCSS.container}>
 				<Navbar />
