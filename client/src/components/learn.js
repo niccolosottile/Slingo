@@ -102,6 +102,7 @@ export default function Learn() {
                     <div className={learnCSS["modal-buttons"]}>
                         <button onClick={() => navigate("/quiz")}>Test</button>
                         <button onClick={() => navigate("/learnsign")}>Learn</button>
+                        <button onClick={() => navigate("/learninteractively")}>Learn interactively</button>
                     </div>
                 </div>
             </Modal>
