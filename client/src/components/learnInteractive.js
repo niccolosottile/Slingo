@@ -174,10 +174,8 @@ export default function LearnSign() {
     };
 
     useEffect(() => {
-        if (!loading) {
-            runCoco();
-        }
-    }, []);
+        runCoco();
+    }, [loading]);
 
     if (!loading) {
 		return (
@@ -186,6 +184,12 @@ export default function LearnSign() {
 				<div className={learnSignCSS.content}>
 					<h1 className={learnSignCSS.title}>{signs[currentIndex]["name"]}</h1>
 					<div className={learnSignCSS["slide-show"]}>
+                        <button
+                                className={learnSignCSS.previous}
+                                onClick={handlePrevClick}
+                            >
+                                Previous
+                        </button>
                         <img
                             src={images[currentIndex].src}
                             alt={images[currentIndex].alt}
@@ -208,23 +212,17 @@ export default function LearnSign() {
                                 height: 480,
                             }}
                         />
+                        <button
+                                className={learnSignCSS.next}
+                                onClick={handleNextClick}
+                            >
+                                Next
+                        </button>
 					</div>
-                    <button
-							className={learnSignCSS.previous}
-							onClick={handlePrevClick}
-						>
-							Previous
-					</button>
-                    <button
-							className={learnSignCSS.next}
-							onClick={handleNextClick}
-						>
-							Next
-					</button>
-					<p className={learnSignCSS.description}>
+                    <p className={learnSignCSS.description}>
 						{signs[currentIndex]["description"]}
-					</p>
-					<button onClick={() => navigate("/learn")} className={learnSignCSS["leave-button"]}>
+                    </p>
+                    <button onClick={() => navigate("/learn")} className={learnSignCSS["leave-button"]}>
 						Leave session
 					</button>
 				</div>
