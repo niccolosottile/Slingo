@@ -111,7 +111,7 @@ export default function LearnSign() {
         
         // Detect every 16.7 ms
         setInterval(() => {
-            detect(net);
+        detect(net);
         }, 16.7);
     };
 
@@ -175,7 +175,7 @@ export default function LearnSign() {
 
     if (!loading) {
         runCoco();
-
+        
 		return (
 			<div className={learnSignCSS.container}>
 				<Navbar />
@@ -192,24 +192,27 @@ export default function LearnSign() {
                             src={images[currentIndex].src}
                             alt={images[currentIndex].alt}
                         />
-                        <Webcam
-                            ref={webcamRef}
-                            muted={true}
-                        />
-                        <canvas
-                            ref={canvasRef}
+                        <div
                             style={{
-                                position: "absolute",
-                                marginLeft: "auto",
-                                marginRight: "auto",
-                                left: 0,
-                                right: 0,
-                                textAlign: "center",
-                                zindex: 8,
+                                position: "relative",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
                                 width: 640,
                                 height: 480,
                             }}
-                        />
+                        >
+                            <Webcam ref={webcamRef} muted={true} />
+                            <canvas
+                                ref={canvasRef}
+                                style={{
+                                    position: "absolute",
+                                    zIndex: 8,
+                                    width: 640,
+                                    height: 480,
+                                }}
+                            />
+                        </div>
                         <button
                                 className={learnSignCSS.next}
                                 onClick={handleNextClick}
