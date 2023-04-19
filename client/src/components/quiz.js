@@ -11,10 +11,7 @@ import { drawRectQuizGreetings } from "./utilities";
 import QuizCSS from "../css/quiz.module.css";
 
 export default function Quiz() {
-
-	
 	const navigate = useNavigate();
-
 
   	const [score, setScore] = useState(0);
 	const [index, setIndex] = useState(0);
@@ -143,9 +140,6 @@ export default function Quiz() {
 	useEffect(() => {
 		runCoco();
 	}, []);
-
-	
-
 
 	if (index !== questions.length) {
 		return (

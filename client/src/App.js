@@ -15,6 +15,7 @@ import Learn from "./components/learn";
 import LearnSign from "./components/learnSign";
 import LearnSign2 from "./components/learnSign2";
 import Tutorial from "./components/tutorial";
+import LearnInteractive from "./components/learnInteractive";
 
 const App = () => {
 	const user = localStorage.getItem("token");
@@ -32,6 +33,7 @@ const App = () => {
 				{user && (<Route path="/tutorial" element={<Tutorial/>}/>)}
 				{user && (<Route path="/learn" element={<Learn />}/>)}
 				{user && (<Route path="/learnSign" element={<LearnSign />}/>)}
+				{user && (<Route path="/learnInteractively" element={<LearnInteractive />}/>)}
 				{user && (<Route path="/learnSign2" element={<LearnSign2 />}/>)}
 				{user && (<Route path="/quiz" element={<Quiz />}/>)}
 				{user && (<Route path="/quiz2" element={<Quiz2 />}/>)}

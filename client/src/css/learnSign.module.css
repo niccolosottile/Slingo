@@ -29,7 +29,7 @@
 
 .slide-show {
   display: flex;
-  /* align centrally on tyhe y axis */
+  /* align centrally on the y axis */
   align-items: center;
 }
 
