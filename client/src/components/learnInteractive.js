@@ -100,7 +100,7 @@ export default function LearnSign() {
         
         // Detect every 16.7 ms
         setInterval(() => {
-        detect(net);
+            detect(net);
         }, 16.7);
     };
 
