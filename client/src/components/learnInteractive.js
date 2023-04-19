@@ -88,20 +88,9 @@ export default function LearnSign() {
 	}
 
     // Sign checking
-    const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
     const [translatedSign, setTranslatedSign] = useState("");
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
-
-    useEffect(() => {
-        if (!loading) {
-            if (translatedSign === signs[currentIndex]["name"].toLowerCase()) {
-                setIsAnswerCorrect(true);
-            } else {
-                setIsAnswerCorrect(false);
-            }
-        }
-    }, [translatedSign]);
 
     const runCoco = async () => {
         // Loading the graph model
@@ -159,9 +148,7 @@ export default function LearnSign() {
                     videoWidth,
                     videoHeight,
                     ctx,
-                    setTranslatedSign,
-                    setIsAnswerCorrect,
-                    signs[currentIndex]["name"].toLowerCase(),
+                    setTranslatedSign
                 );
             });
             
