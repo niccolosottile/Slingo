@@ -1,6 +1,6 @@
 import { React, useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import learnSignCSS from "../css/learnSign.module.css";
+import learnSignCSS from "../css/learnInteractive.module.css";
 // import QuizCSS from "../css/quiz.module.css";
 import Navbar from "./navbar";
 import axios from "axios";
